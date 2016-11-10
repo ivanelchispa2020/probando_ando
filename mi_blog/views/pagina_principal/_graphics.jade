@@ -1,0 +1,49 @@
+div.encuesta
+	img(src="/images/participa.gif" class="img-responsive pull-right img_participa")
+	div(id="encuesta_grafico")
+		h3(class="titulo_encuesta") Participa de nuestra encuesta..!!!
+		h3(class="post_titulo_encuesta") 	¿Que te Ha parecido el árticulo?
+		form(class="form-horizontal" name="formulario_encuesta" id="formulario_encuesta" method="post" action="/articulos/#{id}")
+			div(class="radio")
+					input(type="radio" name="radio" id="radio_1" value="Poco_interesante")
+				label(class="label_encuesta") Poco Útil
+			div(class="radio")
+					input(type="radio" name="radio" id="radio_2" value="Regular")
+				label(class="label_encuesta") Regular
+			div(class="radio")
+					input(type="radio" name="radio" id="radio_3" value="Bueno" checked="true")
+				label(class="label_encuesta") Bueno
+			div(class="radio")
+					input(type="radio" name="radio" id="radio_4" value="Util")
+				label(class="label_encuesta") Útil
+			div(class="radio")
+					input(type="radio" name="radio" id="radio_5" value="Excelente")
+				label(class="label_encuesta") Excelente
+			button(class="hidden btn btn_link" name="valor_encuesta" id="valor_encuesta")
+		button(class="btn btn-danger" name="envia_encuesta" id="envia_encuesta" ) Enviar
+
+	div.render_encuesta
+	div(class="img-responsive img-fluid" id="piechart_3d" class="draw" style="width:900px; height: 500px;")
+
+	script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
+	for enc in encuestas
+		script.
+					google.charts.load("current", {packages:["corechart"]})
+					google.charts.setOnLoadCallback(drawChart)
+
+								function drawChart() {
+										var data = google.visualization.arrayToDataTable([
+												['Task', 'Que te ha parecido el Articulo'],
+												['Poco Interesante',#{enc.Poco_interesante}],
+												['Regular',   #{enc.Regular}],
+												['Bueno',#{enc.Bueno}],
+												['Útil',#{enc.Util}],
+												['Excelente',  #{enc.Excelente}]
+										]);
+
+										var options = {title: '¿Que te ha parecido el Articulo...?',is3D: true,legend: {'position':'right'},chartArea: {width: '100%'}};
+
+										var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+										chart.draw(data, options)	}
+
+

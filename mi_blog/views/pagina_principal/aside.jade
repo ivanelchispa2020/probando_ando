@@ -1,0 +1,87 @@
+aside(class="hidden-xs hidden-sm")
+													h4(class="text-center titulo_categorias") Categorias
+													div(class="list-group text-center margen")
+															a( class="list-group-item active disabled")
+																span(class="color") Cursos
+															a(id="btn_cat_1" value="1" class="list-group-item ")
+																span(class="color text-center ") Java
+															a(id="btn_cat_2" value="2" class="list-group-item ")
+																span(class="color text-center") .Net
+															a(id="btn_cat_3" value="3" class="list-group-item ")
+																span(class="color text-center") Node
+															a(id="btn_cat_4" value="4" class="list-group-item ")
+																span(class="color text-center") Javascript
+															a(id="btn_cat_5" value="5" class="list-group-item ")
+																span(class="color text-center") Html5
+															a(id="btn_cat_6" value="6" class="list-group-item ")
+																span(class="color text-center") PHP
+
+													h4(class="text-center titulo_articulos_recientes") Articulos Recientes #{url}
+
+													-if(ultimos_articulos)
+														for item in ultimos_articulos
+															a(href="./#{item.id_articulo}" ,class="list-group-item text-center" )
+																h4(class="list-group-item-heading" id="titulo_rec")=item.Titulo
+																-var Parrafo=item.Parrafo.substring(0,50)
+																	p(class="list-group-item-text parrafo_recientes") #{Parrafo}....
+													-else
+														for item in articulos
+															a(href="articulos/#{item.id_articulo}" class="list-group-item text-center" )
+																h4(class="list-group-item-heading" id="titulo_rec") #{item.Titulo}
+																-var Parrafo=item.Parrafo.substring(0,50)
+																	p(class="list-group-item-text parrafo_recientes") #{Parrafo}....
+
+
+
+
+		div(class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+			div(class="modal-dialog" role="document")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+							span(aria-hidden="true") &times;
+
+						h4(class="modal-title" id="myModalLabel") Bienvenidos a mi blog..!!
+
+					div(class="modal-body")
+						h4 Hola a todos..Estoy probando la nueva tecnologia Node Y MongoDB..
+						img(src="/images/ivan_avatar.png" class="img-responsive center-block" alt="imagen_logo" width="350px")
+					div(class="modal-footer")
+						button(type="button" class="btn btn-danger" data-dismiss="modal") Cerrar
+
+		div(class="modal fade" id="Presentacion" tabindex="-1" role="dialog" aria-labelledby="Presentacion")
+			div(class="modal-dialog" role="document")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+							span(aria-hidden="true") &times;
+
+						h4(class="modal-title" id="myModalLabel") Bienvenidos a mi blog..!!
+
+					div(class="modal-body")
+						h3 Hola a todos.Mi nombre es Iván Sergio Lopez.
+						h3 Y esto es una prueba de un blog realizado con la tecnologia Node...!!!
+						img(src="/images/green_arrow.gif" class="img-responsive center-block" alt="imagen_logo" width="350px")
+					div(class="modal-footer")
+						button(type="button" class="btn btn-danger" data-dismiss="modal") Cerrar
+
+div(class="modal fade" id="Contacto" tabindex="-1" role="dialog" aria-labelledby="Contacto")
+			div(class="modal-dialog" role="document")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+							span(aria-hidden="true") &times;
+
+						h4(class="modal-title" id="myModalLabel") Mis Datos...!!!
+
+					div(class="modal-body")
+						h3 Hola a todos.Estos son mis datos para contactarme..!!!
+						img(src="/images/batman.png" class="img-responsive center-block" alt="imagen_logo" width="350px")
+						h4 Celular: 0343-154-540-675
+						h4 Email : ivanlopez_88@hotmail.com
+						h4 Email 2 : ivansergiolopez2020@gmail.com
+					div(class="modal-footer")
+						button(type="button" class="btn btn-danger" data-dismiss="modal") Cerrar
+
+
+	img(src="/images/arriba.png" width="50px" class="arriba")

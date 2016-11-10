@@ -1,0 +1,50 @@
+div(class="container" id="caja_comentarios")
+							div(class="col-md-6 col-md-offset-2")
+								img(class="img-responsive pull-right" src="/images/comen.gif")
+								form(name="formulario_comentario" id="formulario_comentario" class="form-horizontal" method="post" enctype="multipart/form-data" action="/articulos/#{id}")
+									div(class="form-group")
+										label(class="sr-only") Nombre
+										label Nombre
+										input(type="text" class="form-control" id="txt_nombre" placeholder="Nombre...." name="txt_nombre" required)
+										label(class="error_nombre") El Nombre es requerido
+									div(class="form-group")
+										label(class="sr-only") Correo
+										label Correo
+										input(type="email" class="form-control" id="txt_correo" placeholder="Correo...." name="txt_correo" required)
+										label(class="error_correo") El Email  es requerido
+										label(class="error_correo2") El Email  no es valido.Revisalo
+									div(class="form-group")
+										label(class="sr-only") Sitio
+										label Sitio
+										input(type="http" class="form-control" id="txt_sitio" placeholder="No Sera Publicado....Ejemplo... http://ejemplo.com" name="txt_sitio")
+
+									div(id="mi_captcha")
+
+									div(class="form-group")
+										div(id="mi_captcha")
+										label(class="sr-only") Captcha
+										label Captcha
+										input(type="text" class="form-control" id="txt_captcha" placeholder="Ingrese el texto de la imagen" name="txt_captcha")
+										label(class="error_captcha")  Error al ingresar el texto de la imagen.Revisalo
+
+									div(class="form-group")
+										div(class="checkbox")
+											label
+												input(type="checkbox" class="form-control" id="ch_imagen" name="ch_imagen")
+										label(class="pull-right") ¿Desea compartir una imagen?
+
+									div(class="form-group" id="seleccionar_imagen")
+										label(class="sr-only") Seleccione una imagen
+										label(for="file_imagen") Seleccione una imagen
+										input(type="file" class="form-control" id="file_imagen"  name="file_imagen")
+
+									div(class="form-group")
+										label(class="sr-only") Ingrese su Comentario
+										label Ingrese su comentario
+										textarea(class="form-control" id="txt_comentario" placeholder="Ingrese su comentario...." name="txt_comentario" required)
+										label(class="error_comentario") El Comentario es requerido
+
+									input(type="hidden" class="btn btn-danger btn-lg center-block btn_enviar" id="id_articulo" name="id_articulo" value="#{id}")
+
+									button( type="button" class="btn btn-danger btn-lg center-block btn_enviar" id="envia_form") Enviar
+

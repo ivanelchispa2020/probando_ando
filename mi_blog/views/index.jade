@@ -1,0 +1,12 @@
+extends layout
+block content
+
+
+				include pagina_principal/header
+				div.container
+					div(class="row")
+						div.col-md-9
+							include pagina_principal/body_principal
+						div.col-md-3
+							include pagina_principal/aside
+				include pagina_principal/footer

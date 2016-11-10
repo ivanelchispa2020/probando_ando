@@ -1,0 +1,147 @@
+section(id="resultado")
+								if(busc)
+									h3(class="bg-primary text-center total_buscador") Total de Articulos Encontrados
+										span(class="resaltame_total_buscador") #{total}
+								div(class="miga-de-pan")
+										ol(class="breadcrumb")
+											li
+												a() Inicio
+											li
+												a() Categoria
+											li(class="active") Curso
+
+										if(!err)
+											if(articulos.length >=1)
+												for item in articulos
+													article(class="post clearfix border_post")
+														a(class="thumb pull-left")
+															img(class="img-thumbnail" src="/images/#{item.imagen}" class="imagenes_ss")
+														h2(class="post-title")
+															a(href="/articulos/#{item.id_articulo}") #{item.Titulo}
+															p(class="post-contenido_2")
+																span(class="post-fecha") Publicado el  #{item.Fecha.getDate()} de #{item.Fecha.getMonth() + 1} del #{item.Fecha.getFullYear()} a las #{item.Fecha. toLocaleTimeString() } Hs. por
+																span(class="post-autor")
+																	button(type="button" class="btn btn-link link_autor" data-toggle="modal" data-target="#myModal") #{item.Autor}
+																-if(busc)
+																		-var reg=new RegExp(busc,"gi")
+																		-var resa=item.Parrafo.replace(reg,"<strong class='resaltame_replace'>" +busc + "</strong>")
+																			p(class="post-contenido")!=resa
+																-else
+																	p(class="post-contenido")  #{item.Parrafo}
+
+																if(id)
+																	for e in item.Parrafo_principal
+																		p(class="post-contenido")=e
+
+																div(class="contenedor-botones")
+																	a(href="/articulos/#{item.id_articulo}" class="btn btn-primary btn_leer_mas") Leer mas...
+																	if(existe_id)
+																		a(class="btn btn-success total_comentarios") Comentarios
+																			span(class="badge total_comentarios")=total_comentarios
+																		a(class="btn btn-success participa_encuesta") Participar de la Encuesta..
+
+
+
+															if(id && item.video)
+																div(class="embed-responsive embed-responsive-16by9")
+																	iframe(class="embed-responsive-item" src="#{item.video}")
+
+											if(!id)
+												nav(class="col-md-offset-4")
+													div(class="center-block")
+														ul(class="pagination")
+
+																-if(!cat)
+																	-cat=0
+																-else
+																	-cat=cat
+																-if(!busc)
+																	-busc=0
+																-else
+																	-busc=busc
+
+																-if(total%5==0)
+																	-var total_paginas=parseInt(total/5)
+																-else
+																	-var total_paginas=parseInt(total/5) + 1
+
+																-if(!num_pag)
+																	-num_pag=1
+																-else
+																	-num_pag=num_pag
+
+																-if(parseInt(num_pag)>1)
+																	li
+																		a(value="1" value2="#{cat}" value3="'#{busc}'"  class="hidden-xs hidden-sm" id="btn_primera" onclick="from_principal($(this).attr('value'),#{cat},'#{busc}','resultado','/articulos')") Primera
+																	li
+																		a(value="#{num_pag-1}" value2="#{cat}" value3="'#{busc}'" id="btn_anterior" onclick="from_principal($(this).attr('value'),#{cat},'#{busc}','resultado','/articulos')") Anterior
+																-for (var i = 1; i < total_paginas + 1; i++)
+																	-if(num_pag==i)
+																		li(class="active")
+																			a(value="#{num_pag}" value2="#{cat}" value3="'#{busc}'" class="disabled" id="btn_pagina" onclick="from_principal($(this).attr('value'),#{cat},'#{busc}','resultado','/articulos')" disabled="true")=num_pag
+																	-else
+																		li
+																			a(value="#{i}" value2="#{cat}" value3="'#{busc}'" id="btn_i_#{i}" onclick="from_principal($(this).attr('value'),#{cat},'#{busc}','resultado','/articulos')")=i
+																-if(parseInt(num_pag)<total_paginas)
+																	li
+																		a(value="#{num_pag+1}" value2="#{cat}" value3="#{busc}"  id="btn_siguiente" onclick="from_principal($(this).attr('value'),#{cat},'#{busc}','resultado','/articulos')") Siguiente
+																	li
+																		a(value="#{total_paginas}" value2="#{cat}" value3="#{busc}" class="hidden-xs hidden-sm" id="btn_ultima" onclick="from_principal($(this).attr('value'),#{cat},'#{busc}','resultado','/articulos')") Ultima
+
+
+
+											if(id==0 || id>total_articulos)
+												h2(class="resaltame_error") No existe ese articulo
+												a(class="btn btn-link link_retroceder" href="/articulos") Atras
+
+
+if(id && articulos.length>0)
+	include _graphics
+
+if(id && articulos.length>0)
+	-contador=0;
+	div.comentarios_respuestas
+		for com in comen
+			-contador++;
+					li(class="media media_comentarios" id="comentarios")
+							div(class="media-left")
+								-if(com.extension )
+									a(href="#")
+										img(class="media-object imagen_com" src="/images/avatares/#{com._id}.#{com.extension}" width="64" alt="media")
+								-else
+									a(href="#")
+										img(class="media-object imagen_com" src="/images/ivan_avatar.png" width="64" alt="media")
+
+							div(class="media-body")
+								button(type="button" class="btn btn-success pull-right btn_responder" data-toggle="modal" data-target="#mi_comentario_#{com._id}") Responder
+								include _modal_formulario
+								h4(class="media-heading nombre_comentarios") #{com.Nombre} dice:
+
+								p(class="parrafo_comentario text-center")=com.Comentario
+								h4(class="fecha_comentario") Publicado el  #{com.Fecha.getDate()} de #{com.Fecha.getMonth() + 1} del #{com.Fecha.getFullYear()} a las #{com.Fecha. toLocaleTimeString() } HS .
+								span(class="autor_comentario pull-right") #{com.Correo}
+
+							if(com.respuestas)
+								for res in com.respuestas
+										div(class="col-md-offset-1 media respuestas_res")
+											div(class="media-left")
+												a(href="#")
+														-if(res.extension )
+															a(href="#")
+																img(class="media-object imagen_resp" src="/images/avatares/#{res._id}.#{res.extension}" width="64" alt="media")
+														-else
+															a(href="#")
+															img(class="media-object imagen_resp" src="/images/ivan_avatar.png" width="64" alt="media")
+											div(class="media-body")
+												h4(class="media-heading nombre_respuesta") #{res.Nombre} dice:
+												p(class="parrafo_respuesta text-center")=res.Comentario
+												h4(class="fecha_respuesta") Publicado el  #{res.Fecha.getDate()} de #{res.Fecha.getMonth() + 1} del #{res.Fecha.getFullYear()} a las #{res.Fecha. toLocaleTimeString() } HS .
+												span(class="autor_respuesta") #{res.Correo}
+
+if(id && articulos.length>0)
+	include form_comentarios
+
+
+
+
+

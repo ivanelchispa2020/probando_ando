@@ -1,0 +1,61 @@
+div(class="modal fade" id="mi_comentario_#{com._id}" name="mi_comentario_#{com._id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+			div(class="modal-dialog" role="document")
+				div(class="modal-content")
+					div(class="modal-header")
+						button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+							span(aria-hidden="true") &times;
+
+						h4(class="modal-title" id="myModalLabel") Respondiendo al comentario de #{com.Nombre}..!!!
+					div(class="modal-body")
+						div(class="container")
+							div(class="col-md-5")
+								form(name="formulario_comentario" id="formulario_comentario#{contador}" class="form-horizontal" method="post" enctype="multipart/form-data" action="/articulos/#{id}")
+									div(class="form-group")
+										label(class="sr-only") Nombre
+										label Nombre
+										input(type="text" class="form-control" id="txt_nombre#{contador}" placeholder="Nombre...." name="txt_nombre" required)
+										label(class="error_nombre") El Nombre es requerido
+									div(class="form-group")
+										label(class="sr-only") Correo
+										label Correo
+										input(type="email" class="form-control" id="txt_correo#{contador}" placeholder="Correo...." name="txt_correo" required)
+										label(class="error_correo#{contador}") El Email  es requerido
+										label(class="error_correo2#{contador}") El Email  no es valido.Revisalo
+
+									div(class="form-group")
+										div(id="mi_captcha#{contador}")
+										label(class="sr-only") Captcha
+										label Captcha
+										input(type="text" class="form-control" id="txt_captcha#{contador}" placeholder="Ingrese el texto de la imagen")
+										label(class="error_captcha#{contador}")  Error al ingresar el texto de la imagen.Revisalo
+
+									div(class="form-group")
+										div(class="checkbox")
+											label
+												input(type="checkbox" class="form-control" value="#{contador}" id="ch_imagen#{contador}")
+										label(class="pull-right") ¿Desea compartir una imagen?
+
+									div(class="form-group" id="seleccionar_imagen#{contador}")
+										label(class="sr-only") Seleccione una imagen
+										label(for="file_imagen#{contador}") Seleccione una imagen
+										input(type="file" class="form-control" id="file_imagen#{contador}" name="file_imagen")
+
+									div(class="form-group")
+										label(class="sr-only") Ingrese su Comentario
+										label Ingrese su comentario
+										textarea(class="form-control" id="txt_comentario#{contador}" placeholder="Ingrese su comentario...." name="txt_comentario" required)
+										label(class="error_comentario#{contador}") El Comentario es requerido
+
+									input(type="hidden" class="btn btn-danger btn-lg center-block btn_enviar" id="id_articulo" name="id_articulo" value="#{id}")
+
+									input(type="hidden" class="btn btn-danger btn-lg center-block" id="id_respuesta#{contador}" name="id_respuesta" value="#{com._id}")
+
+									input(type="hidden"  id="total_respuestas"  value="#{total_comentarios}")
+
+
+
+					div(class="modal-footer")
+						button( type="button" value="#{contador}" class="btn btn-success" id="envia_form_#{contador}" ) Enviar
+						button(type="button" class="btn btn-danger" data-dismiss="modal") Cancelar
+
+

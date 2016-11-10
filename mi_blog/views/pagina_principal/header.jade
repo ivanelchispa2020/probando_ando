@@ -1,0 +1,60 @@
+header
+					nav(class="navbar navbar-inverse navbar-static-top" role="navigation")
+						div(class="container")
+								div(class="navbar-header")
+									button(type="button" class="navbar-toggle collapsed boton_menu_resp" data-toggle="collapse" data-target="#navegacion-fm")
+											span(class="sr-only")
+												Desplegar|Ocultar Menu
+												span (class="icon-bar")
+												span (class="icon-bar")
+												span (class="icon-bar")
+										a(class="navbar-brand" data-toggle="modal" data-target="#Presentacion")
+											span(class="color") IvanLopez
+
+								div(class="collapse navbar-collapse" id="navegacion-fm")
+										ul(class="nav navbar-nav")
+											li(class="active")
+													a(href="*")
+															span(class="color") Inicio
+											li(class="dropdown")
+													a(href="*" class="dropdown-toggle" data-toggle="dropdown" role="button")
+															span(class="color") Categorias
+															span(class="caret")
+													ul(class="dropdown-menu menu_desplegable" role="menu")
+														li
+															a()
+																span(class="color2") Cursos
+																		div(class="divider")
+														li
+															a(id="btn_cat__1" value="1")
+																span(class="color1") Java
+														li
+															a(id="btn_cat__2" value="2")
+																span(class="color1") .Net
+														li
+															a(id="btn_cat__3" value="3")
+																span(class="color1") Node
+														li
+															a(id="btn_cat__4" value="4")
+																span(class="color1") Javascript
+														li
+															a(id="btn_cat__5" value="5")
+																span(class="color1") Html5
+														li
+															a(id="btn_cat__6" value="6")
+																span(class="color1") Php
+
+
+
+
+										div(action="" class="navbar-form navbar-right" role="search")
+											div(class="form-group")
+													input(type="text" class="form-control" id="buscador"  placeholder="Buscar")
+													button(type="button" id="btn_buscador" class="btn btn-success form-control" title="Buscar")
+														span(class="glyphicon glyphicon-search")
+
+
+				section(class="jumbotron jumbotron-ivan")
+						div(class="container")
+								h1 Ivanlopez.com
+								p Aprendiendo Node.js
